@@ -6,7 +6,14 @@ import Footer from './Pages/Inicio/Footer.jsx'
 import Section from './Pages/Inicio/Section.jsx'
 import Lista from './Pages/Inicio/Lista.jsx'
 
+// import Cadastro from './Cadastro/Cadastro.jsx'
+
 // import Forms from './Pages/Login/Forms.jsx'
+
+// import Header from './Pages/Buscas/Header.jsx'
+// import Footer from './Pages/Buscas/Footer.jsx'
+// import Lista from './Pages/Buscas/Lista.jsx'
+// import Section from './Pages/Buscas/Section.jsx'
 
 // CRIANDO AS ROTAS
 // import { createRoot } from 'react-dom/client'
@@ -21,9 +28,21 @@ createRoot(document.getElementById('root')).render(
     <Lista/>
     <Footer />
 
+
+{/* PARTE BUSCAS */}
+    {/* <Header />
+    <Section/>
+    <Lista/>
+    <Footer /> */}
+
+
 {/* PARTE LOGIN */}
     {/* <Forms/>
-    <Imagem/> */}
+
+
+{/* PARTE CADASTRO */}
+    {/* <Cadastro/> */}
+
 
   </StrictMode>,
 )
