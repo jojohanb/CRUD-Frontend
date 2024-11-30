@@ -2,9 +2,9 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import Header from './Pages/Inicio/Header.jsx'
-// import Footer from './Pages/Inicio/Footer.jsx'
-// import Section from './Pages/Inicio/Section.jsx'
-// import Lista from './Pages/Inicio/Lista.jsx'
+import Footer from './Pages/Inicio/Footer.jsx'
+import Section from './Pages/Inicio/Section.jsx'
+import Lista from './Pages/Inicio/Lista.jsx'
 
 // import Forms from './Pages/Login/Forms.jsx'
 
@@ -17,9 +17,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
 {/* PARTE INICIO */}
     <Header />
-    {/* <Section/>
+    <Section/>
     <Lista/>
-    <Footer /> */}
+    <Footer />
 
 {/* PARTE LOGIN */}
     {/* <Forms/>

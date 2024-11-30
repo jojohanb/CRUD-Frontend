@@ -1,10 +1,9 @@
-// function Footer(){
-//     return(
-//         <div className="bg-[#0d61fd] p-5 absolute bottom-0 w-full">
-
-//         </div>
-
-//     )
-
-// }
-// export default Footer
+function Footer() {
+    return (
+      <footer className="bg-[#2e77ff] text-white p-5 fixed bottom-0 w-full text-center">
+        <p className="text-sm"> MaGendas - Faça seus Agendamentos conosco</p>
+      </footer>
+    );
+  }
+  export default Footer;
+  
