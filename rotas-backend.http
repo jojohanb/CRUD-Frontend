@@ -1,0 +1,28 @@
+GET https://crud-jnhc.onrender.com/videos
+
+###
+
+POST https://crud-jnhc.onrender.com/videos
+Content-Type: application/json
+
+{
+    "title": "Outro vídeo",
+    "description": "Outro teste",
+    "duration": "250"
+}
+
+###
+
+DELETE https://crud-jnhc.onrender.com/videos/19b62b11-bfa7-46ef-9434-7d8d74fb02d7
+
+
+###
+
+PUT https://crud-jnhc.onrender.com/videos/1b85eb67-b967-41c4-b5e1-1ae2337c9f4b
+Content-Type: application/json
+
+{
+    "title": "Outro vídeo 2",
+    "description": "Outro teste 2",
+    "duration": "2500"
+}
