@@ -13,7 +13,8 @@ import "./index.css";
 // import { Menu } from './Menu';
 import Buscas from './Pages/Buscas/Buscas';
 import Inicio from './Pages/Inicio/Inicio';
-import Forms from './Pages/Login/Forms';
+// import Forms from './Pages/Login/Forms';
+import Editar from './Pages/Editar';
 // import Cadastro from "./Pages/Cadastro/Cadastro";
 
 
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
       <Route path="/buscas" element={<Buscas />} />
       {/* <Route path="/cadastro" element={<Cadastro />} /> */}
       {/* <Route path="/login" element={<Forms />} /> */}
+      <Route path="/agendamentos" element={<Editar/>} />
     </>
   )
 );

@@ -40,7 +40,7 @@ function Buscas() {
         </nav>
       </div>
       <div className="flex gap-2 items-center">
-        <p>Murilo Robetti R</p>
+        <p>Murilo R. Robetti</p>
         <FontAwesomeIcon icon={faChevronDown} />
       </div>
     </header>

@@ -58,9 +58,10 @@ function Inicio() {
     <section className="flex justify-between items-center p-4 border-b border-gray-300">
       <div className="flex gap-4 items-center">
         <h1 className="font-bold text-xl text-gray-800">Agendamentos</h1>
-        <button className="p-2 text-[#0d61fd] border border-[#0d61fd] rounded-lg hover:bg-blue-100">
+
+        <NavLink to="/agendamentos" className="p-2 text-[#0d61fd] border border-[#0d61fd] rounded-lg hover:bg-blue-100">
           Novo Agendamento
-        </button>
+        </NavLink>
       </div>
       <div className="flex items-center gap-4">
         <button className="p-2 border rounded-lg flex items-center gap-1">
