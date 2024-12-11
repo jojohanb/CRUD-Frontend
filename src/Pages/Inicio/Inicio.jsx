@@ -3,6 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 
+import { NavLink } from "react-router-dom";
+
+
 
 function Inicio() {
   const data = [
@@ -28,19 +31,20 @@ function Inicio() {
       {/* CABEÇA */}
     <header className="bg-[#377dff] text-white text-xl font-bold flex justify-between items-center p-4 shadow-lg">
       <div className="flex gap-4 items-center">
-        <img
+      <img
           className="rounded-full w-12 h-12"
-          src="/src/png MG.JPG"
+          src="/MG.JPG" 
           alt="Logo MaGendas"
-        />
+      />
         <h1 className="text-2xl">MaGendas</h1>
         <nav className="hidden sm:flex gap-4">
-          <a href="#" className="hover:underline">
-            Agendamentos
-          </a>
-          <a href="#" className="hover:underline">
-            Dentistas
-          </a>
+        <NavLink to="/" className={'hover:underline'}>
+          Agendamentos
+        </NavLink>
+
+        <NavLink to="/buscas" className={'hover:underline'}>
+          Dentistas
+        </NavLink>
         </nav>
       </div>
       <div className="flex gap-2 items-center">
@@ -116,7 +120,7 @@ function Inicio() {
       <footer className="bg-[#2e77ff] text-white p-5 fixed bottom-0 w-full text-center">
         <p className="text-sm"> MaGendas - Faça seus Agendamentos conosco</p>
       </footer>
-      
+
     </div>
   );
 }

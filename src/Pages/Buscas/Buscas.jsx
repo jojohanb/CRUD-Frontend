@@ -1,5 +1,6 @@
 
 // IMPORTAÇOES
+import { NavLink } from 'react-router-dom';
 
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -29,12 +30,13 @@ function Buscas() {
 
         <h1 className="text-2xl">MaGendas</h1>
         <nav className="hidden sm:flex gap-4">
-          <a href="#" className="hover:underline">
-            Agendamentos
-          </a>
-          <a href="#" className="hover:underline">
-            Dentistas
-          </a>
+        <NavLink to="/" className={'hover:underline'}>
+          Agendamentos
+        </NavLink>
+
+        <NavLink to="/buscas" className={'hover:underline'}>
+          Dentistas
+        </NavLink>
         </nav>
       </div>
       <div className="flex gap-2 items-center">
