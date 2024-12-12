@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Editar() {
   const [paciente, setPaciente] = useState("");
   const [dentista, setDentista] = useState("");
   const [servico, setServico] = useState("");
   const [dataHora, setDataHora] = useState("");
-  const [isUpdated, setIsUpdated] = useState(false);
+
+  const navigate = useNavigate();
 
   const atualizarAgendamento = async () => {
     try {
@@ -25,7 +26,7 @@ function Editar() {
 
       if (response.ok) {
         alert("Agendamento atualizado com sucesso!");
-        setIsUpdated(true); // Atualiza o estado para redirecionar
+        navigate("/"); // Redireciona para a página inicial
       } else {
         alert("Erro ao atualizar o agendamento");
       }
@@ -34,11 +35,6 @@ function Editar() {
       alert("Erro ao atualizar o agendamento");
     }
   };
-
-  if (isUpdated) {
-    // Redirecionar para a página inicial
-    return <NavLink to="/" />;
-  }
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
