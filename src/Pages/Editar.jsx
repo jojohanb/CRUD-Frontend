@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Editar() {
   const [paciente, setPaciente] = useState("");
   const [dentista, setDentista] = useState("");
   const [servico, setServico] = useState("");
   const [dataHora, setDataHora] = useState("");
-
-  const navigate = useNavigate();
+  const [isUpdated, setIsUpdated] = useState(false);
 
   const atualizarAgendamento = async () => {
     try {
-      const response = await fetch("http://localhost:3000/agendamentos", {
+      const response = await fetch("http://localhost:3333/agendamentos", {
         method: "POST", // Use "PUT" se for uma atualização de um registro existente
         headers: {
           "Content-Type": "application/json",
@@ -26,7 +25,7 @@ function Editar() {
 
       if (response.ok) {
         alert("Agendamento atualizado com sucesso!");
-        navigate("/"); // Redireciona para a página inicial
+        setIsUpdated(true); // Atualiza o estado para redirecionar
       } else {
         alert("Erro ao atualizar o agendamento");
       }
@@ -35,6 +34,11 @@ function Editar() {
       alert("Erro ao atualizar o agendamento");
     }
   };
+
+  if (isUpdated) {
+    // Redirecionar para a página inicial
+    return <NavLink to="/" />;
+  }
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
