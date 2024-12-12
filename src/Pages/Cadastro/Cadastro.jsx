@@ -39,7 +39,7 @@ function Cadastro() {
             <input
               className="border border-gray-300 w-10/12 p-3 rounded-lg "
               type="text"
-              placeholder="Digite seu nome..."
+              placeholder="Digite seu nome . . ."
               value={nome}
               onChange={(e) => setNome(e.target.value)}
               required
@@ -47,7 +47,7 @@ function Cadastro() {
             <input
               className="border border-gray-300 w-10/12 p-3 rounded-lg "
               type="email"
-              placeholder="Digite seu e-mail..."
+              placeholder="Digite seu e-mail . . . "
               value={emailCadastro}
               onChange={(e) => setEmailCadastro(e.target.value)}
               required
@@ -55,7 +55,7 @@ function Cadastro() {
             <input
               className="border border-gray-300 w-10/12 p-3 rounded-lg "
               type="password"
-              placeholder="Digite sua senha..."
+              placeholder="Digite sua senha . . . "
               value={senhaCadastro}
               onChange={(e) => setSenhaCadastro(e.target.value)}
               required
@@ -64,7 +64,7 @@ function Cadastro() {
             <input
               className="border border-gray-300 w-10/12 p-3 rounded-lg "
               type="password"
-              placeholder="Confirme sua senha..."
+              placeholder="Confirme sua senha . . . "
               value={confirmacao}
               onChange={(e) => setConfirmacao(e.target.value)}
               required
