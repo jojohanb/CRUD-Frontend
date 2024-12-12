@@ -86,6 +86,13 @@ function Inicio() {
           <p className="p-2 text-[#0d61fd] border border-[#0d61fd] rounded-lg">10/10/2024
           <FontAwesomeIcon icon={faChevronDown} />
           </p>
+
+          <div className="flex items-center gap-4">
+            <input className=' p-2 border-2 rounded-md w-72' type="text" placeholder='Buscar por nomes de pacientes . . .' />
+            <button className="p-2 bg-[#0d61fd] text-white rounded-lg hover:bg-[#0b4fcc]">
+              Filtrar
+            </button>
+          </div>
       </div>
 
 {/* PARTE DOS DADOS */}
