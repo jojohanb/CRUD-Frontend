@@ -12,7 +12,7 @@ function Editar() {
   const atualizarAgendamento = async () => {
     try {
       const response = await fetch("http://localhost:3333/agendamentos", {
-        method: "POST", // Use "PUT" se for uma atualização de um registro existente
+        method: "POST", 
         headers: {
           "Content-Type": "application/json",
         },
@@ -26,7 +26,7 @@ function Editar() {
 
       if (response.ok) {
         alert("Agendamento atualizado com sucesso!");
-        navigate("/"); // Redireciona para a página inicial
+        navigate("/"); 
       } else {
         alert("Erro ao atualizar o agendamento");
       }
