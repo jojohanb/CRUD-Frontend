@@ -3,31 +3,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useNavigate } from "react-router-dom";
 
-// PARTE DA FUNCOES DE EDITAR E CRIAR ESTAO PRONTAS
-
 function Inicio() {
   const [dados, setDados] = useState([]);
   const [modoEdicao, setModoEdicao] = useState(false);
   const [itemEditando, setItemEditando] = useState(null);
   const navegar = useNavigate();
 
+  // Função para buscar agendamentos
   useEffect(() => {
     const buscarAgendamentos = async () => {
-      try {
-        const resposta = await fetch("http://localhost:3333/agendamentos");
-        if (resposta.ok) {
-          const resultado = await resposta.json();
-          setDados(resultado);
-        } else {
-          console.error("Erro ao buscar agendamentos");
-        }
-      } catch (erro) {
-        console.error("Erro de conexão com o servidor:", erro);
-      }
+      const resposta = await fetch("http://localhost:3333/agendamentos");
+      const resultado = await resposta.json();
+      setDados(resultado);
     };
     buscarAgendamentos();
   }, []);
 
+  // Função para editar um agendamento
   const manipularEdicao = (item) => {
     setItemEditando(item);
     setModoEdicao(true);
@@ -36,23 +28,22 @@ function Inicio() {
   const Cancelar = () => setModoEdicao(false);
 
   const manipularAtualizacao = async () => {
-    const resposta = await fetch(`http://localhost:3333/agendamentos/${itemEditando.id}`, {
+    await fetch(`http://localhost:3333/agendamentos/${itemEditando.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(itemEditando),
     });
-    if (resposta.ok) {
-      const itemAtualizado = await resposta.json();
-      setDados((anterior) =>
-        anterior.map((item) =>
-          item.id === itemAtualizado.id ? itemAtualizado : item
-        )
-      );
-      setModoEdicao(false);
-    }
+    setModoEdicao(false);
+    setDados(dados.map(item => item.id === itemEditando.id ? itemEditando : item));
   };
 
-  const irParaLogin = () => navegar("/login");
+  // Função para excluir um agendamento
+  const excluirAgendamento = async (id) => {
+    await fetch(`http://localhost:3333/agendamentos/${id}`, {
+      method: 'DELETE',
+    });
+    setDados(dados.filter(item => item.id !== id));  // Remove o item excluído
+  };
 
   return (
     <div>
@@ -67,18 +58,18 @@ function Inicio() {
         </div>
         <div className="flex gap-2 items-center">
           <p>Murilo Robetti R</p>
-          <FontAwesomeIcon icon={faChevronDown} onClick={irParaLogin} />
+          <FontAwesomeIcon icon={faChevronDown} onClick={() => navegar("/login")} />
         </div>
       </header>
 
       <section className="flex justify-between items-center p-4 border-b border-gray-300">
-      <div className=" flex justify-center items-center gap-4">
-        <h1 className="font-bold text-xl text-gray-800">Agendamentos</h1>
+        <div className="flex justify-center items-center gap-4">
+          <h1 className="font-bold text-xl text-gray-800">Agendamentos</h1>
           <NavLink to="/agendamentos" className="p-2 text-[#0d61fd] border border-[#0d61fd] rounded-lg hover:bg-blue-100">
             Novo Agendamento
           </NavLink>
-      </div>
-      <div className="flex justify-center items-center gap-4">
+        </div>
+        <div className="flex justify-center items-center gap-4">
           <p className="p-2 text-[#0d61fd] border border-[#0d61fd] rounded-lg ">01/10/2024  
           <FontAwesomeIcon icon={faChevronDown} />
           </p>
@@ -93,9 +84,7 @@ function Inicio() {
               Filtrar
             </button>
           </div>
-      </div>
-
-{/* PARTE DOS DADOS */}
+        </div>
       </section>
 
       <div className="p-4">
@@ -116,15 +105,22 @@ function Inicio() {
             <p className="text-center">{item.dataHora}</p>
             <p className="text-center">{item.servico === "Consulta" ? "R$200,00" : "R$250,00"}</p>
             <div className="flex gap-2 justify-center">
-              <button className="text-red-500 hover:text-red-700"><FontAwesomeIcon icon={faTrashAlt} /></button>
-              <button className="text-blue-500 hover:text-blue-700" onClick={() => manipularEdicao(item)}><FontAwesomeIcon icon={faEdit} /></button>
+              <button 
+                className="text-red-500 hover:text-red-700" 
+                onClick={() => excluirAgendamento(item.id)}
+              >
+                <FontAwesomeIcon icon={faTrashAlt} />
+              </button>
+              <button className="text-blue-500 hover:text-blue-700" onClick={() => manipularEdicao(item)}>
+                <FontAwesomeIcon icon={faEdit} />
+              </button>
             </div>
           </div>
         ))}
       </div>
 
       {modoEdicao && (
-          <div className="p-4 bg-white rounded-md shadow-md max-w-md mx-auto border border-gray-300 mt-6">
+        <div className="p-4 bg-white rounded-md shadow-md max-w-md mx-auto border border-gray-300 mt-6">
           <h2 className="font-bold text-lg text-gray-700 mb-4 text-center">Editar Agendamento</h2>
           <form 
             onSubmit={(e) => { 
@@ -162,13 +158,10 @@ function Inicio() {
               </button>
             </div>
           </form>
-        </div>)}
-        
-      <footer className="bg-[#2e77ff] text-white p-5 fixed bottom-0 w-full text-center">
-        <p className="text-sm"> MaGendas - Faça seus Agendamentos conosco</p>
-      </footer>
+        </div>
+      )}
     </div>
   );
 }
-// PARA CONCLUIR FALTA A PARTE DE SELECAO E A DE DELETAR 
+
 export default Inicio;

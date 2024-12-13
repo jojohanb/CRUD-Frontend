@@ -32,7 +32,7 @@ function Editar() {
           paciente,
           dentista,
           servico,
-          dataHora,
+          dataHora: dataHora
         }),
       });
 
