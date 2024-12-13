@@ -10,7 +10,6 @@ import "./index.css";
 
 //IMPORTANDO OS COMPONENTES
 
-// import { Menu } from './Menu';
 import Buscas from './Pages/Buscas/Buscas';
 import Inicio from './Pages/Inicio/Inicio';
 import Forms from './Pages/Login/Forms';

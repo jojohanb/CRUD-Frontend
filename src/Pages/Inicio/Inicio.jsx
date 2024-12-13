@@ -51,7 +51,6 @@ function Inicio() {
     setModoEdicao(true);  
   };
 
-  // Função para filtrar os agendamentos pelo nome do paciente
   const filtrarPacientes = () => {
     return dados.filter(item => 
       item.paciente.toLowerCase().includes(searchTerm.toLowerCase())
@@ -97,11 +96,11 @@ function Inicio() {
               type="text"
               placeholder='Buscar por nomes de pacientes . . .'
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)} // Atualiza o valor do termo de busca
+              onChange={(e) => setSearchTerm(e.target.value)} 
             />
             <button
               className="p-2 bg-[#0d61fd] text-white rounded-lg hover:bg-[#0b4fcc]"
-              onClick={() => filtrarPacientes()} // Chama a função de filtro
+              onClick={() => filtrarPacientes()} 
             >
               Filtrar
             </button>
