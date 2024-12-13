@@ -51,8 +51,8 @@ function Editar() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-blue-100">
       <div className="border border-gray-300 shadow-lg rounded-lg bg-white w-96 p-6">
-        <h1 className="font-bold text-3xl text-sky-600 text-center">Editar Agendamento</h1>
-        <h3 className="text-slate-500 text-center text-lg mb-4">Atualize seu agendamento</h3>
+        <h1 className="font-bold text-3xl text-sky-600 text-center">Novo Agendamento</h1>
+        <h3 className="text-slate-500 text-center text-lg mb-4">Atualize seus agendamentos</h3>
 
         <div className="text-center text-blue-500 mb-4">{mensagem}</div>
 

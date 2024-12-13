@@ -7,8 +7,10 @@ function Inicio() {
   const [dados, setDados] = useState([]);
   const [modoEdicao, setModoEdicao] = useState(false);
   const [itemEditando, setItemEditando] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(''); 
+  const [termoBusca, setTermoBusca] = useState(''); 
   const navegar = useNavigate();
+
+// Aqui é a parte de pedir resultados pro bd
 
   useEffect(() => {
     const buscarAgendamentos = async () => {
@@ -27,7 +29,9 @@ function Inicio() {
     buscarAgendamentos();
   }, []);
   
-  const Cancelar = () => setModoEdicao(false);
+  
+
+// aqui é parte do modo edicao 
 
   const manipularAtualizacao = async () => {
     await fetch(`http://localhost:3333/agendamentos/${itemEditando.id}`, {
@@ -39,6 +43,13 @@ function Inicio() {
     setDados(dados.map(item => item.id === itemEditando.id ? itemEditando : item));
   };
 
+  const manipularEdicao = (item) => {
+      setItemEditando(item);
+      setModoEdicao(true);  
+    };
+  const Cancelar = () => setModoEdicao(false);
+//Aqui é a parte do delete
+
   const excluirAgendamento = async (id) => {
     await fetch(`http://localhost:3333/agendamentos/${id}`, {
       method: 'DELETE',
@@ -46,14 +57,11 @@ function Inicio() {
     setDados(dados.filter(item => item.id !== id));  
   };
 
-  const manipularEdicao = (item) => {
-    setItemEditando(item);
-    setModoEdicao(true);  
-  };
+  //Aqui é a parte da busca dos pacientes
 
   const filtrarPacientes = () => {
     return dados.filter(item => 
-      item.paciente.toLowerCase().includes(searchTerm.toLowerCase())
+      item.paciente.toLowerCase().includes(termoBusca.toLowerCase())
     );
   };
 
@@ -95,13 +103,12 @@ function Inicio() {
               className='p-2 border-2 rounded-md w-72'
               type="text"
               placeholder='Buscar por nomes de pacientes . . .'
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)} 
+              value={termoBusca}
+              onChange={(e) => setTermoBusca(e.target.value)} 
             />
             <button
               className="p-2 bg-[#0d61fd] text-white rounded-lg hover:bg-[#0b4fcc]"
-              onClick={() => filtrarPacientes()} 
-            >
+              onClick={() => filtrarPacientes()} >
               Filtrar
             </button>
           </div>
@@ -118,7 +125,7 @@ function Inicio() {
           <p className="text-center">Ações</p>
         </div>
 
-        {/* Mapear os dados filtrados */}
+  {/* buscas */}
         {filtrarPacientes().map((item) => (
           <div key={item.id} className="grid grid-cols-6 gap-4 border-b-2 border-gray-200 py-4 text-gray-700">
             <p className="text-center">{item.paciente}</p>
@@ -144,6 +151,9 @@ function Inicio() {
         ))}
       </div>
 
+
+
+  {/* modoEdicao */}
       {modoEdicao && (
         <div className="p-4 bg-white rounded-md shadow-md max-w-md mx-auto border border-gray-300 mt-6">
           <h2 className="font-bold text-lg text-gray-700 mb-4 text-center">Editar Agendamento</h2>

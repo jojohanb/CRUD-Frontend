@@ -77,7 +77,7 @@ function Cadastro() {
 
           <div className="text-sm text-slate-500">
             <p>
-              Já possui uma conta?{' '}
+              Já possui uma conta?
               <NavLink to="/login" className="text-sky-600 hover:underline">
                 Fazer login
               </NavLink>

@@ -54,7 +54,7 @@ function Forms() {
 
           <div className="text-sm text-slate-500">
             <p>
-              Não tenho conta?{' '}
+              Não tenho conta?
               <NavLink to="/cadastro" className="text-sky-600 hover:underline">
                 Criar conta agora
               </NavLink>
