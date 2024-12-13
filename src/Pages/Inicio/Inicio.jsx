@@ -47,7 +47,7 @@ function Inicio() {
 
   const manipularEdicao = (item) => {
     setItemEditando(item);
-    setModoEdicao(true);  // Habilita o modo de edição
+    setModoEdicao(true);  
   };
 
   return (
