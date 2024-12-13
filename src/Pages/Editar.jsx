@@ -32,8 +32,7 @@ function Editar() {
           paciente,
           dentista,
           servico,
-          datahora: dataHora
-          // dataHora ta dando bug (arrumar isso dps)
+          dataHora,
         }),
       });
 
