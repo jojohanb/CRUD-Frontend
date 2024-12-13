@@ -45,6 +45,11 @@ function Inicio() {
     setDados(dados.filter(item => item.id !== id));  
   };
 
+  const manipularEdicao = (item) => {
+    setItemEditando(item);
+    setModoEdicao(true);  // Habilita o modo de edição
+  };
+
   return (
     <div>
       <header className="bg-[#377dff] text-white text-xl font-bold flex justify-between items-center p-4 shadow-lg">
