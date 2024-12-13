@@ -7,6 +7,7 @@ function Inicio() {
   const [dados, setDados] = useState([]);
   const [modoEdicao, setModoEdicao] = useState(false);
   const [itemEditando, setItemEditando] = useState(null);
+  const [searchTerm, setSearchTerm] = useState(''); 
   const navegar = useNavigate();
 
   useEffect(() => {
@@ -50,6 +51,13 @@ function Inicio() {
     setModoEdicao(true);  
   };
 
+  // Função para filtrar os agendamentos pelo nome do paciente
+  const filtrarPacientes = () => {
+    return dados.filter(item => 
+      item.paciente.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  };
+
   return (
     <div>
       <header className="bg-[#377dff] text-white text-xl font-bold flex justify-between items-center p-4 shadow-lg">
@@ -84,8 +92,17 @@ function Inicio() {
           </p>
 
           <div className="flex items-center gap-4">
-            <input className=' p-2 border-2 rounded-md w-72' type="text" placeholder='Buscar por nomes de pacientes . . .' />
-            <button className="p-2 bg-[#0d61fd] text-white rounded-lg hover:bg-[#0b4fcc]">
+            <input
+              className='p-2 border-2 rounded-md w-72'
+              type="text"
+              placeholder='Buscar por nomes de pacientes . . .'
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)} // Atualiza o valor do termo de busca
+            />
+            <button
+              className="p-2 bg-[#0d61fd] text-white rounded-lg hover:bg-[#0b4fcc]"
+              onClick={() => filtrarPacientes()} // Chama a função de filtro
+            >
               Filtrar
             </button>
           </div>
@@ -102,7 +119,8 @@ function Inicio() {
           <p className="text-center">Ações</p>
         </div>
 
-        {dados.map((item) => (
+        {/* Mapear os dados filtrados */}
+        {filtrarPacientes().map((item) => (
           <div key={item.id} className="grid grid-cols-6 gap-4 border-b-2 border-gray-200 py-4 text-gray-700">
             <p className="text-center">{item.paciente}</p>
             <p className="text-center">{item.dentista}</p>
@@ -110,13 +128,16 @@ function Inicio() {
             <p className="text-center">{item.datahora}</p>
             <p className="text-center">{item.servico === "Consulta" ? "R$200,00" : "R$250,00"}</p>
             <div className="flex gap-2 justify-center">
-              <button 
-                className="text-red-500 hover:text-red-700" 
+              <button
+                className="text-red-500 hover:text-red-700"
                 onClick={() => excluirAgendamento(item.id)}
               >
                 <FontAwesomeIcon icon={faTrashAlt} />
               </button>
-              <button className="text-blue-500 hover:text-blue-700" onClick={() => manipularEdicao(item)}>
+              <button
+                className="text-blue-500 hover:text-blue-700"
+                onClick={() => manipularEdicao(item)}
+              >
                 <FontAwesomeIcon icon={faEdit} />
               </button>
             </div>
@@ -127,11 +148,11 @@ function Inicio() {
       {modoEdicao && (
         <div className="p-4 bg-white rounded-md shadow-md max-w-md mx-auto border border-gray-300 mt-6">
           <h2 className="font-bold text-lg text-gray-700 mb-4 text-center">Editar Agendamento</h2>
-          <form 
-            onSubmit={(e) => { 
-              e.preventDefault(); 
-              manipularAtualizacao(); 
-            }} 
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              manipularAtualizacao();
+            }}
             className="space-y-3"
           >
             {["paciente", "dentista", "servico", "datahora"].map((campo) => (
@@ -148,15 +169,15 @@ function Inicio() {
               </div>
             ))}
             <div className="flex gap-2 justify-end">
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className="bg-blue-500 text-white px-3 py-1 text-sm rounded-md hover:bg-blue-600"
               >
                 Atualizar
               </button>
-              <button 
-                type="button" 
-                className="bg-red-400 text-white px-3 py-1 text-sm rounded-md hover:bg-red-500" 
+              <button
+                type="button"
+                className="bg-red-400 text-white px-3 py-1 text-sm rounded-md hover:bg-red-500"
                 onClick={Cancelar}
               >
                 Cancelar
