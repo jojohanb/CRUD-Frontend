@@ -23,7 +23,7 @@ function Editar() {
     if (!validarCampos()) return;
   
     try {
-      const response = await fetch("http://localhost:3333/agendamentos", {
+      const response = await fetch("https://crud-jnhc.onrender.com/agendamentos", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

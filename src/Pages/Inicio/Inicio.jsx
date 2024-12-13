@@ -14,8 +14,9 @@ function Inicio() {
 
   useEffect(() => {
     const buscarAgendamentos = async () => {
+      console.log("fetch")
       try {
-        const resposta = await fetch("http://localhost:3333/agendamentos");
+        const resposta = await fetch("https://crud-jnhc.onrender.com/agendamentos");
         const resultado = await resposta.json();
         if (resposta.ok) {
           setDados(resultado);
@@ -23,6 +24,7 @@ function Inicio() {
           console.error("Erro ao buscar agendamentos");
         }
       } catch (error) {
+        console.log("erro catch")
         console.error("Erro:", error);
       }
     };
@@ -34,7 +36,7 @@ function Inicio() {
 // aqui é parte do modo edicao 
 
   const manipularAtualizacao = async () => {
-    await fetch(`http://localhost:3333/agendamentos/${itemEditando.id}`, {
+    await fetch(`https://crud-jnhc.onrender.com/agendamentos${itemEditando.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(itemEditando),
@@ -51,7 +53,7 @@ function Inicio() {
 //Aqui é a parte do delete
 
   const excluirAgendamento = async (id) => {
-    await fetch(`http://localhost:3333/agendamentos/${id}`, {
+    await fetch(`https://crud-jnhc.onrender.com/agendamentos${id}`, {
       method: 'DELETE',
     });
     setDados(dados.filter(item => item.id !== id));  
