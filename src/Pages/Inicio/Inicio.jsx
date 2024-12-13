@@ -9,22 +9,23 @@ function Inicio() {
   const [itemEditando, setItemEditando] = useState(null);
   const navegar = useNavigate();
 
-  // Função para buscar agendamentos
   useEffect(() => {
     const buscarAgendamentos = async () => {
-      const resposta = await fetch("http://localhost:3333/agendamentos");
-      const resultado = await resposta.json();
-      setDados(resultado);
+      try {
+        const resposta = await fetch("http://localhost:3333/agendamentos");
+        const resultado = await resposta.json();
+        if (resposta.ok) {
+          setDados(resultado);
+        } else {
+          console.error("Erro ao buscar agendamentos");
+        }
+      } catch (error) {
+        console.error("Erro:", error);
+      }
     };
     buscarAgendamentos();
   }, []);
-
-  // Função para editar um agendamento
-  const manipularEdicao = (item) => {
-    setItemEditando(item);
-    setModoEdicao(true);
-  };
-
+  
   const Cancelar = () => setModoEdicao(false);
 
   const manipularAtualizacao = async () => {
@@ -37,12 +38,11 @@ function Inicio() {
     setDados(dados.map(item => item.id === itemEditando.id ? itemEditando : item));
   };
 
-  // Função para excluir um agendamento
   const excluirAgendamento = async (id) => {
     await fetch(`http://localhost:3333/agendamentos/${id}`, {
       method: 'DELETE',
     });
-    setDados(dados.filter(item => item.id !== id));  // Remove o item excluído
+    setDados(dados.filter(item => item.id !== id));  
   };
 
   return (
@@ -102,7 +102,7 @@ function Inicio() {
             <p className="text-center">{item.paciente}</p>
             <p className="text-center">{item.dentista}</p>
             <p className="text-center">{item.servico}</p>
-            <p className="text-center">{item.dataHora}</p>
+            <p className="text-center">{item.datahora}</p>
             <p className="text-center">{item.servico === "Consulta" ? "R$200,00" : "R$250,00"}</p>
             <div className="flex gap-2 justify-center">
               <button 
@@ -129,7 +129,7 @@ function Inicio() {
             }} 
             className="space-y-3"
           >
-            {["paciente", "dentista", "servico", "dataHora"].map((campo) => (
+            {["paciente", "dentista", "servico", "datahora"].map((campo) => (
               <div key={campo}>
                 <label className="text-sm font-medium text-gray-600">
                   {`${campo[0].toUpperCase() + campo.slice(1)}:`}

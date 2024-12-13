@@ -6,12 +6,12 @@ function Editar() {
   const [paciente, setPaciente] = useState("");
   const [dentista, setDentista] = useState("");
   const [servico, setServico] = useState("");
-  const [dataHora, setDataHora] = useState("");
+  const [datahora, setDatahora] = useState("");
   const [mensagem, setMensagem] = useState("");
   const navigate = useNavigate();
 
   const validarCampos = () => {
-    if (!paciente || !dentista || !servico || !dataHora) {
+    if (!paciente || !dentista || !servico || !datahora) {
       setMensagem("Por favor, preencha todos os campos.");
       return false;
     }
@@ -21,7 +21,7 @@ function Editar() {
 
   const atualizarAgendamento = async () => {
     if (!validarCampos()) return;
-
+  
     try {
       const response = await fetch("http://localhost:3333/agendamentos", {
         method: "POST",
@@ -32,22 +32,22 @@ function Editar() {
           paciente,
           dentista,
           servico,
-          dataHora: dataHora
+          datahora: datahora, 
         }),
       });
-
+  
       if (response.ok) {
-        setMensagem("Agendamento atualizado com sucesso!");
-        setTimeout(() => navigate("/"), 500);
+        setMensagem("Agendamento criado com sucesso!");
+        setTimeout(() => navigate("/"), 500); 
       } else {
-        setMensagem("Erro ao atualizar o agendamento.");
+        setMensagem("Erro ao criar o agendamento.");
       }
     } catch (error) {
       console.error("Erro:", error);
-      setMensagem("Erro ao atualizar o agendamento.");
+      setMensagem("Erro ao criar o agendamento.");
     }
   };
-
+  
   return (
     <div className="flex justify-center items-center min-h-screen bg-blue-100">
       <div className="border border-gray-300 shadow-lg rounded-lg bg-white w-96 p-6">
@@ -91,8 +91,8 @@ function Editar() {
 
           <select
             className="border border-gray-300 p-3 rounded-lg"
-            value={dataHora}
-            onChange={(e) => setDataHora(e.target.value)}
+            value={datahora}
+            onChange={(e) => setDatahora(e.target.value)}
             required
           >
             <option value="">Selecione Data e Hora</option>
